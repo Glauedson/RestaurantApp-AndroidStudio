@@ -26,6 +26,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material.icons.materialIcon
@@ -51,6 +52,7 @@ import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import com.edson.restaurantapp.ui.theme.RestaurantAppTheme
 import kotlinx.serialization.builtins.ArraySerializer
+import coil.compose.AsyncImage
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -174,17 +176,17 @@ fun App(){
                     val preco: String
                 )
 
-                val produtos = listOf(
-                    Produto("Ichiraku Ramen", "y", "4.5", "15.00"),
-                    Produto("Philadelhia roll", "y", "4.8", "9.50"),
-                    Produto("Ichiraku Ramen", "y", "5", "15.00"),
-                    Produto("Ichiraku Ramen", "y", "5", "15.00")
-                )
+            val produtos = listOf(
+                Produto("Ichiraku Ramen", "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQCkNqwvc-d8VhL-gR25XKcy_8xdOKaWnVyrQ&s", "4.5", "15.00"),
+                Produto("Philadelhia roll", "https://pickledplum.com/wp-content/uploads/2023/05/Philadelphia-roll-WP-thumb.jpg", "4.8", "9.50"),
+                Produto("Okonomiyaki", "https://static01.nyt.com/images/2023/10/10/multimedia/08EATrex-Okonomiyaki-wjth/08EATrex-Okonomiyaki-wjth-mediumSquareAt3X.jpg", "4.2", "12.75"),
+                Produto("Takoyaki", "https://www.sabornamesa.com.br/media/k2/items/cache/1e1bb52f463ac18f40b9aec9689e7bbd_XL.jpg", "4.6", "8.90")
+            )
 
                 LazyVerticalGrid(
                     columns = GridCells.Fixed(2),
                     contentPadding = PaddingValues(8.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(10.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.padding(horizontal = 15.dp)
                 ) {
@@ -204,16 +206,34 @@ fun App(){
                                     modifier = Modifier
                                         .clip(RoundedCornerShape(12.dp))
                                         .height(180.dp)
-                                        .background(Color.DarkGray)
                                         .fillMaxWidth(),
-                                    // Aqui vai ficar as imagens dos lanches
-                                )
+                                ){
+                                    AsyncImage(
+                                        model = produto.imagem,
+                                        contentDescription = null,
+                                        modifier = Modifier.fillMaxSize(),
+                                        contentScale = ContentScale.Crop
+                                    )
+
+                                    Row(modifier = Modifier.fillMaxWidth().padding(10.dp)) {
+                                        Icon(
+                                            imageVector = Icons.Default.FavoriteBorder,
+                                            contentDescription = null,
+                                            modifier = Modifier
+                                                .size(35.dp)
+                                                .clip(RoundedCornerShape(50.dp))
+                                                .background(Color.White)
+                                                .padding(9.dp),
+                                            tint = Color.Gray
+                                        )
+                                    }
+                                }
 
                                 Text(
                                     text = produto.nome,
                                     color = Color.Black,
                                     fontWeight = FontWeight.Bold,
-                                    modifier = Modifier.align(Alignment.Start).padding(start = 15.dp, end = 15.dp, bottom = 5.dp, top = 10.dp)
+                                    modifier = Modifier.align(Alignment.Start).padding(start = 15.dp, end = 15.dp, top = 10.dp)
                                 )
 
                                 Row(
