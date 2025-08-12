@@ -45,7 +45,7 @@ Ele não possui backend ou integração com APIs todo o conteúdo mostrado é mo
 <div align="center">
 
 [![My Skills](https://skillicons.dev/icons?i=kotlin,androidstudio)](https://skillicons.dev)
-<img src="https://downloads.marketplace.jetbrains.com/files/18409/809206/icon/default.png" width=50px/>
+<img src="https://logo.svgcdn.com/d/jetpackcompose-original-8x.png" width=46px/>
 </div>
 
 <h2 id="licenca">
